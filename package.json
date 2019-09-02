@@ -1,0 +1,121 @@
+{
+  "name": "lambchop",
+  "version": "1.0.6",
+  "description": "Lambchop for Capterra",
+  "main": "index.js",
+  "repository": "git@github.com:capterra/lambchop.git",
+  "author": "techteam@capterra.com",
+  "license": "NONE",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "webpack --config demo/webpack.dev.js",
+    "build:watch": "webpack --watch true --config demo/webpack.dev.js",
+    "start": "npm run build;nf start",
+    "test": "npx jest --clearCache && npx jest --detectOpenHandles",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-root-import": "^6.1.0",
+    "babel-plugin-source-map-support": "^2.0.1",
+    "babel-plugin-styled-components": "^1.8.0",
+    "babel-plugin-transform-async-to-promises": "^0.8.8",
+    "babel-plugin-transform-imports": "^1.5.1",
+    "babel-preset-airbnb": "^2.5.3",
+    "clean-webpack-plugin": "^2.0.1",
+    "dotenv": "^6.0.0",
+    "enzyme": "^3.4.2",
+    "enzyme-adapter-react-16": "^1.2.0",
+    "enzyme-to-json": "^3.3.4",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "exports-loader": "^0.7.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "imports-loader": "^0.8.0",
+    "react-test-renderer": "^16.4.2",
+    "jest": "^23.5.0",
+    "jest-styled-components": "^6.0.1",
+    "js-yaml": "^3.13.1",
+    "json-loader": "^0.5.7",
+    "raw-loader": "^1.0.0",
+    "serverless": "^1.43.0",
+    "serverless-finch": "^2.4.2",
+    "serverless-offline": "^3.25.8",
+    "serverless-plugin-common-layers": "^1.0.0",
+    "serverless-plugin-tracing": "2.0.0",
+    "terser-webpack-plugin": "^1.2.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-manifest-plugin": "^2.0.4",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2",
+    "airbnb-browser-shims": "^3.0.0",
+    "aws-sdk": "2.294.0",
+    "aws-xray-sdk-core": "1.3.0",
+    "babel-polyfill": "^6.26.0",
+    "es6-promise": "^4.2.4",
+    "foreman": "^3.0.1",
+    "http-aws-es": "^6.0.0",
+    "node-fetch": "^1.7.3",
+    "prop-types": "^15.6.2",
+    "query-string": "^6.1.0",
+    "source-map-support": "^0.5.9",
+    "styled-components": "^3.4.2",
+    "styled-normalize": "8.0.0",
+    "whatwg-fetch": "^2.0.4"
+  },
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "hiredis": "^0.5.0",
+    "redis": "^2.8.0",
+    "rollbar": "^2.4.1",
+    "lambda-api": "^0.10.1",
+    "styled-components": "^3.4.2"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>setupTests.js",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|ico|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/src/ui/stylesheets/"
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/legacy_notes_and_workbook/",
+      "<rootDir>/client/src/stylesheets/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "caching/**/*.{js,jsx}",
+      "error-notification/**/*.{js,jsx}",
+      "middlewares/**/*.{js,jsx}",
+      "universal-rendering/**/*.{js,jsx}",
+      "!**/node_modules/**"
+    ],
+    "coverageDirectory": "coverage",
+    "globals": {
+      "__JEST_TESTS__": true,
+      "__isBrowser__": false
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!cap-ui)"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "clearMocks": true
+  }
+}

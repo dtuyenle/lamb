@@ -1,0 +1,9 @@
+dev:
+  CLIENT_BUCKET_NAME: lambchop-ui-dev
+  CLIENT_DIST_FOLDER: dist/public
+staging:
+  CLIENT_BUCKET_NAME: lambchop-ui-stg
+  CLIENT_DIST_FOLDER: dist/public
+prod:
+  CLIENT_BUCKET_NAME: lambchop-ui-prd
+  CLIENT_DIST_FOLDER: dist/public

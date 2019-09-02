@@ -1,0 +1,12 @@
+dev:
+  REDIS_URL: localhost
+  REDIS_PORT: 6379
+  REDIS_PASS: undefined
+staging:
+  REDIS_URL: localhost
+  REDIS_PORT: 6379
+  REDIS_PASS: password
+prod:
+  REDIS_URL: localhost
+  REDIS_PORT: 6379
+  REDIS_PASS: password

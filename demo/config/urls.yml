@@ -1,0 +1,12 @@
+dev:
+  WRITE_REVIEW_BASE_URL: https://reviews-dev.capstage.net
+  IMAGE_BASE_URL: https://cdn0.capterra-static.com
+  MAIN_SITE_URL: http://localhost:3000
+staging:
+  WRITE_REVIEW_BASE_URL: https://reviews.capstage.net
+  IMAGE_BASE_URL: https://cdn0.capterra-static.com
+  MAIN_SITE_URL: https://www.capstage.net
+prod:
+  WRITE_REVIEW_BASE_URL: https://reviews.capterra.com
+  IMAGE_BASE_URL: https://cdn0.capterra-static.com
+  MAIN_SITE_URL: https://www.capterra.com

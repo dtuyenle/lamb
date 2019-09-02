@@ -1,0 +1,21 @@
+/** @module ssr/analytics/ga */
+
+/**
+ * HTML template partials for Google Analytics snippets.
+ * @param {String} trackingId - Google Analytic tracking id.
+ * @param {String} containerId - Google Analytic container id.
+ */
+const gaOptimizeSnippet = (trackingId, containerId) => (trackingId && containerId ? `
+<!-- Analytics-Optimize Snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '${trackingId}', 'auto');
+  ga('require', '${containerId}');
+  ga('set', 'exp', 'ApXa9ABiTsC1r_T83xqfTw.1');
+</script>
+` : '');
+
+export default gaOptimizeSnippet;
