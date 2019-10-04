@@ -15,10 +15,10 @@ const getHtml = ({
   req, res, statusCode, title, configData,
 }) => {
   const { appName, render, errorNotifier } = configData;
-  let { assetMetaData = { assetBaseUrl: 'http://localhost:8080' } } = configData;
+  let { assetMetaData = { assetBaseUrl: 'http://localhost:8081' } } = configData;
   assetMetaData = {
     ...assetMetaData,
-    assetBaseUrl: assetMetaData.assetBaseUrl || 'http://localhost:8080'
+    assetBaseUrl: assetMetaData.assetBaseUrl || 'http://localhost:8081'
   };
 
   // Set status code
