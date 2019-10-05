@@ -18,7 +18,7 @@ const getHtml = ({
   let { assetMetaData = { assetBaseUrl: 'http://localhost:8080' } } = configData;
   assetMetaData = {
     ...assetMetaData,
-    assetBaseUrl: assetMetaData.assetBaseUrl || 'http://localhost:8080'
+    assetBaseUrl: assetMetaData.assetBaseUrl || 'http://localhost:8080',
   };
 
   // Set status code
@@ -38,10 +38,7 @@ const getHtml = ({
   }
 
   const { data } = req;
-  const {
-    gaTrackingId, gaContainerId, gtmContainerId,
-    initialGTMDataLayer = {},
-  } = gaConfig;
+  const { initialGTMDataLayer = {} } = gaConfig;
 
   let html = null;
 
@@ -49,7 +46,7 @@ const getHtml = ({
   if (!req.cacheResponse) {
     html = reactServerSideRender({
       envForHydration,
-      gaConfig: { gaTrackingId, gaContainerId, gtmContainerId },
+      gaConfig: { ...gaConfig },
       errorNotifier,
       pageMetaData,
       assetMetaData: {

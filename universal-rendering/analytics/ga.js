@@ -5,7 +5,7 @@
  * @param {String} trackingId - Google Analytic tracking id.
  * @param {String} containerId - Google Analytic container id.
  */
-const gaOptimizeSnippet = (trackingId, containerId) => (trackingId && containerId ? `
+const gaOptimizeSnippet = (trackingId, containerId, expId) => (trackingId && containerId ? `
 <!-- Analytics-Optimize Snippet -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -14,7 +14,7 @@ const gaOptimizeSnippet = (trackingId, containerId) => (trackingId && containerI
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', '${trackingId}', 'auto');
   ga('require', '${containerId}');
-  ga('set', 'exp', 'ApXa9ABiTsC1r_T83xqfTw.1');
+  ${expId ? `ga('set', 'exp', ${expId})` : ''};
 </script>
 ` : '');
 

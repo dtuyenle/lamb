@@ -37,10 +37,10 @@ const renderAssetsUrl = ({
 const renderHeaderThirdPartyScripts = ({
   errorNotifier, gaConfig = {}, initialGTMDataLayer,
 }) => {
-  const { gaTrackingId, gaContainerId, gtmContainerId } = gaConfig;
+  const { gaTrackingId, gaContainerId, gtmContainerId, gaExperimentId } = gaConfig;
   return [
     errorNotifier ? errorNotifier.getBrowserScriptTag() : '',
-    gaOptimizeSnippet(gaTrackingId, gaContainerId),
+    gaOptimizeSnippet(gaTrackingId, gaContainerId, gaExperimentId),
     gtmDataLayerInit(initialGTMDataLayer),
     gtmHead(gtmContainerId),
   ];

@@ -19,7 +19,7 @@ const client = {
   set: jest.fn(),
 };
 
-const req = { log: { warn: console.warn, error: jest.fn() } };
+const req = { log: { info: console.log, warn: console.warn, error: jest.fn() } };
 const res = { header: () => {}, statusCode: 200 };
 const next = jest.fn();
 

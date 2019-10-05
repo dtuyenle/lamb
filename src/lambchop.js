@@ -71,7 +71,7 @@ class Lambchop {
         access: true,
         stack: true,
         detail: true,
-      }
+      },
     });
     this.cacheClient = null;
     this.middlewares = [];
@@ -114,7 +114,7 @@ class Lambchop {
           req.cacheKey = `${functionName}_${appName}_${keyFunction(req, res)}`;
         }
         return req.cacheKey;
-      }
+      };
       const initHTMLCache = req => req.uncachedHtml || null;
       this.loadMiddleware('cacheRead', middlewares.cacheRead(prefixKeyFunction, this.cacheClient));
       // Set Cache when all middlewares done executions and response sent back

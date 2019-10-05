@@ -1,3 +1,5 @@
+import 'url-search-params-polyfill';
+
 const paramsToObject = (entries) => {
   const result = {};
   for (let entry of entries) {

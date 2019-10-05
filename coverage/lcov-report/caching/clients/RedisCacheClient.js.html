@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for caching/clients/RedisCacheClient.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">caching/clients</a> RedisCacheClient.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.62% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.77% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.62% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>17/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import redis from 'redis';
+import { promisify } from 'util';
+import AbstractCacheClient from './AbstractCacheClient';
+import promiseTimeout from '../../util/promiseTimeout';
+&nbsp;
+/** Default value for Redis db data. When this expired data will be deleted. */
+const DEFAULT_EXPIRE_TIME = 259200;
+&nbsp;
+/**
+ * Class representing Redis cache client.
+ * @extends AbstractCacheClient
+ */
+class RedisCacheClient extends AbstractCacheClient {
+  /**
+   * Create redis client.
+   * @param {String} host - The redis host address value.
+   * @param {Number} port - The redis port value.
+   * @param {String} password - The redis password value.
+   * @param {String} ttl - Expire value in seconds.
+   * When this expired the value will be deleted from Redis db.
+   * @param {String} connectionTimeout - Connection time out.
+   */
+  constructor({
+    host, port, password,
+    ttl, connectionTimeout,
+  }) {
+    super();
+    this.host = host;
+    this.port = port;
+    this.password = password;
+    this.ttl = ttl;
+    this.connectionTimeout = connectionTimeout || 100;
+    this.initialize();
+  }
+&nbsp;
+  /**
+   * Initialize cache client instance.
+   */
+  initialize() {
+    let client = null;
+    try {
+      client = redis.createClient({
+        host: this.host,
+        port: this.port,
+        password: this.password,
+        retry_strategy: <span class="fstat-no" title="function not covered" >(o</span>ptions) =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.warn('REDIS ERROR: Could not connect! Retrying ..................');</span>
+<span class="cstat-no" title="statement not covered" >          if (options.total_retry_time &gt; 1000 * 60 * 60) {</span>
+            // End reconnecting after a specific timeout and flush all commands with error
+<span class="cstat-no" title="statement not covered" >            return new Error('Retry time exhausted');</span>
+          }
+<span class="cstat-no" title="statement not covered" >          if (options.attempt &gt; 10) {</span>
+            // End reconnecting with built in error
+<span class="cstat-no" title="statement not covered" >            return undefined;</span>
+          }
+          // Reconnect after
+<span class="cstat-no" title="statement not covered" >          return Math.min(options.attempt * 100, 3000);</span>
+        },
+      });
+      client.on('error', this.handleError);
+    } catch (err) {
+<span class="cstat-no" title="statement not covered" >      this.handleError(err);</span>
+<span class="cstat-no" title="statement not covered" >      console.error('REDIS ERROR: Could not createClient!!!');</span>
+    }
+    this.instance = client;
+  }
+&nbsp;
+  /**
+   * Check if redis instance connected.
+   */
+<span class="fstat-no" title="function not covered" >  co</span>nnected() {
+<span class="cstat-no" title="statement not covered" >    return this.instance &amp;&amp; this.instance.connected;</span>
+  }
+&nbsp;
+  /**
+   * Get data from Redis db based on key.
+   * @param {String} key - Key value.
+   * @param {Number} timeout - Timeout value.
+   * Throw error if Redis db not responding, within this value in millisecond.
+   * @return {Promise} A promise that get data from Redis db with timeout value.
+   */
+  async get(key, timeout) {
+    const promisifiedGet = promisify(this.instance.get).bind(this.instance);
+    return promiseTimeout(promisifiedGet(key), timeout || this.connectionTimeout)
+      .catch((err) =&gt; {
+        this.handleError(`redis.get failed, probably due to timeout, ${err}`);
+        return false;
+      });
+  }
+&nbsp;
+  /**
+   * Store data into Redis db with key and value.
+   * @param {String} key - Key to pair with value.
+   * @param {String} value - Value to store.
+   * @param {String} ttl - Expire value in seconds.
+   * When this expired the value will be deleted from Redis db.
+   */
+<span class="fstat-no" title="function not covered" >  se</span>t(key, value, ttl) {
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      this.instance.set(key, value, 'EX', ttl || this.ttl || DEFAULT_EXPIRE_TIME);</span>
+    } catch (err) {
+<span class="cstat-no" title="statement not covered" >      this.handleError(`Could not setCache on REDIS. ${err}`);</span>
+    }
+  }
+}
+&nbsp;
+export default RedisCacheClient;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 04 2019 15:18:06 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

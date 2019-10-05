@@ -1,8 +1,6 @@
 import { hydrate } from 'react-dom';
 import loadTrackingPixel from 'lambchop/universal-rendering/analytics/trackingPixel';
 
-
-
 /**
  * This function polling to see if SSR_BRIDGE_DATA is available.
  * And use this data to render UI on client side.
@@ -12,10 +10,14 @@ import loadTrackingPixel from 'lambchop/universal-rendering/analytics/trackingPi
  * At this point we guarantee SSR_BRIDGE_DATA is available.
  * @param {Object} options - Options to turn on third party script
  * @param {String} options.hydrationContainerId - Container Id for react to hydrate
- * @param {Boolean} options.includeTrackingPixel - If includeTrackingPixel is set It will load trackingPixel.
- * @param {Func} options.getTrackingPixelPayload() - Function returns payload data to send to the tracking pixel service
- * @param {String} options.getTrackingPixelPayload().consumer - Let the tracking pixel know what app the request is coming from
- * @param {Object} options.getTrackingPixelPayload().params - Params(in key, value pairs) to add to the tracking pixel request params
+ * @param {Boolean} options.includeTrackingPixel -
+ * If includeTrackingPixel is set It will load trackingPixel.
+ * @param {Func} options.getTrackingPixelPayload() -
+ * Function returns payload data to send to the tracking pixel service
+ * @param {String} options.getTrackingPixelPayload().consumer -
+ * Let the tracking pixel know what app the request is coming from
+ * @param {Object} options.getTrackingPixelPayload().params -
+ * Params(in key, value pairs) to add to the tracking pixel request params
  */
 const reactHydrator = (getAppRoot, options = {}) => {
   const {

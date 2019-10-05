@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for universal-rendering/analytics/trackingPixel/generateTrackingPixelRequestUrl.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">universal-rendering/analytics/trackingPixel</a> generateTrackingPixelRequestUrl.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/18</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { uriComponentInDoubleQuotedAttr } from 'xss-filters';
+import parseUtmParams from './parseUtmParams';
+import getUrlParamsAsObject from './getUrlParamsAsObject';
+&nbsp;
+const DEFAULT_CONSUMER = 'not-specified';
+const DEFAULT_PAYLOAD = {
+  consumer: DEFAULT_CONSUMER,
+  params: {},
+};
+&nbsp;
+const generateTrackingPixelRequestUrl = <span class="fstat-no" title="function not covered" >(m</span>ainSiteUrl, payload = <span class="branch-0 cbranch-no" title="branch not covered" >DEFAULT_PAYLOAD)</span> =&gt; {
+  const urlQueryParams = <span class="cstat-no" title="statement not covered" >getUrlParamsAsObject();</span>
+  const utmParams = <span class="cstat-no" title="statement not covered" >parseUtmParams(urlQueryParams, document.cookie);</span>
+  const { gclid, msclkid } = <span class="cstat-no" title="statement not covered" >urlQueryParams;</span>
+&nbsp;
+  let url = <span class="cstat-no" title="statement not covered" >`${mainSiteUrl}/track_click?request_referrer=${uriComponentInDoubleQuotedAttr(document.referrer || undefined)}`;</span>
+<span class="cstat-no" title="statement not covered" >  Object.keys(utmParams).forEach(<span class="fstat-no" title="function not covered" >(k</span>ey) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    url += `&amp;${uriComponentInDoubleQuotedAttr(key)}=${uriComponentInDoubleQuotedAttr(utmParams[key])}`;</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (gclid) {</span>
+<span class="cstat-no" title="statement not covered" >    url += `&amp;gclid=${uriComponentInDoubleQuotedAttr(gclid)}`;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (msclkid) {</span>
+<span class="cstat-no" title="statement not covered" >    url += `&amp;msclkid=${uriComponentInDoubleQuotedAttr(msclkid)}`;</span>
+  }
+&nbsp;
+  // Add the custom payload params
+  const payloadParams = <span class="cstat-no" title="statement not covered" >payload.params || {};</span>
+<span class="cstat-no" title="statement not covered" >  url += `&amp;consumer=${payload.consumer || DEFAULT_CONSUMER}`;</span>
+<span class="cstat-no" title="statement not covered" >  Object.keys(payloadParams).forEach(<span class="fstat-no" title="function not covered" >(k</span>ey) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    url += `&amp;${key}=${payloadParams[key]}`;</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return url;</span>
+};
+&nbsp;
+export default generateTrackingPixelRequestUrl;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 04 2019 15:18:06 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

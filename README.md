@@ -5,7 +5,7 @@ Lambchop makes it easier to develop Lambda backed React pages for Capterra. In o
 2. [Support Modules](#support-modules) - leave the ease of `Lambchop.app` for more control by using `Lambchop` support modules directly with `lambda-api`
 
 ## Version
-* [Current - v1.0.0]
+* [Current - v1.0.7]
 
 ## Installation
 
@@ -43,7 +43,8 @@ It also gives you some flexibility to choose what caching client you want ( curr
 |  [cache](#cache-config) | {Object}       | Cache config.      |  Optional |
 |  errorNotifier        | {Object} | Error Notifier instance. Can be extended from AbstractErrorNotifier class.  | Optional |
 |  dataFetcher        | {Promise or Async function} | **async function is recommended** Get product data promise. Either from upstream API or from database. The result will be appended as data into req object and available in req object to all other middlewares. (req.data)    |  Required |
-|  [render](#render-config) | {Function}      | Render configuration. This have access to req and res object from lambda-api. statusCode is available in res object and can be accessed res.statusCode     | Required |
+|  [render](#render-config) | {Function}      | Render configuration. This have access to req and res object from lambda-api. statusCode is available in res object and can be accessed res.statusCode     | Required if api not available |
+|  [api] | {Function}      | Render api. This have access to req and res object from lambda-api. | Required if rrender not available |
 
 
 #### Cache configuration

@@ -3,7 +3,7 @@ import AbstractCacheClient from '../AbstractCacheClient';
 class TestCacheClientError extends AbstractCacheClient {}
 
 class TestCacheClient extends AbstractCacheClient {
-  constructor() { super(); }
+  constructor() { super(); this.initialize(); }
   initialize() { this.instance = 'connected'; }
   connected() { return true; }
   get() { return 'data'; }
