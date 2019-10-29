@@ -18,11 +18,13 @@ import loadTrackingPixel from 'lambchop/universal-rendering/analytics/trackingPi
  * Let the tracking pixel know what app the request is coming from
  * @param {Object} options.getTrackingPixelPayload().params -
  * Params(in key, value pairs) to add to the tracking pixel request params
+ * @param {Function} options.hydrateCallback - Callback to execute after hydration is done
  */
 const reactHydrator = (getAppRoot, options = {}) => {
   const {
     hydrationContainerId = 'root',
     includeTrackingPixel = true,
+    hydrateCallback,
     getTrackingPixelPayload = () => undefined,
   } = options;
   let interval;
@@ -30,6 +32,7 @@ const reactHydrator = (getAppRoot, options = {}) => {
     hydrate(
       getAppRoot(),
       document.getElementById(hydrationContainerId),
+      hydrateCallback,
     );
     // Third party script
     if (includeTrackingPixel) { loadTrackingPixel(getTrackingPixelPayload()); }

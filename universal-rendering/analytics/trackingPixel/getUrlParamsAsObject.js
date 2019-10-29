@@ -2,7 +2,7 @@ import 'url-search-params-polyfill';
 
 const paramsToObject = (entries) => {
   const result = {};
-  for (let entry of entries) {
+  for (const entry of entries) {
     const [key, value] = entry;
     result[key] = value;
   }

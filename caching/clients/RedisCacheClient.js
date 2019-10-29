@@ -60,7 +60,7 @@ class RedisCacheClient extends AbstractCacheClient {
       client.on('error', this.handleError);
     } catch (err) {
       this.handleError(err);
-      console.error('REDIS ERROR: Could not createClient!!!');
+      console.warn('REDIS ERROR: Could not createClient!!!');
     }
     this.instance = client;
   }

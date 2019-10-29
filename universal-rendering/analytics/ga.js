@@ -14,7 +14,7 @@ const gaOptimizeSnippet = (trackingId, containerId, expId) => (trackingId && con
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', '${trackingId}', 'auto');
   ga('require', '${containerId}');
-  ${expId ? `ga('set', 'exp', ${expId})` : ''};
+  ${expId ? `ga('set', 'exp', '${expId}')` : ''};
 </script>
 ` : '');
 

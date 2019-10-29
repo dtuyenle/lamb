@@ -8,6 +8,14 @@ describe('RedisCacheClient', () => {
     expect(redisCacheClient.instance !== null).toEqual(true);
   });
 
+  it('should pass credential through when initiated', () => {
+    const redisCacheClient = new RedisCacheClient({
+      host: '127.0.0.1', port: '443', password: '',
+    });
+    expect(redisCacheClient.host).toEqual('127.0.0.1');
+    expect(redisCacheClient.password).toEqual('');
+  });
+
   it('should timeout after 1ms if connection not established when do a get data', async () => {
     const redisCacheClient = new RedisCacheClient({
       host: '127.1.1.1', port: '443', password: '', connectionTimeout: 1,

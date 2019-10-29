@@ -5,7 +5,7 @@ Lambchop makes it easier to develop Lambda backed React pages for Capterra. In o
 2. [Support Modules](#support-modules) - leave the ease of `Lambchop.app` for more control by using `Lambchop` support modules directly with `lambda-api`
 
 ## Version
-* [Current - v1.0.7]
+* [Current - v1.3.8]
 
 ## Installation
 
@@ -14,11 +14,18 @@ Include this library into package.json of the project with the right version.
 "lambchop": "git+ssh://git@github.com/capterra/lambchop.git#v0.1",
 ```
 
+## Lambchop CLI
+Lambchop CLI command list:
+
+| CLI Commands           | Description
+|------------- | -------------
+|  lambchop help  |  show supported command |
+|  lambchop version  |  show current version |
+|  lambchop static  |  create static html files from lambda name |
+
 ## Lambchop.app
 
 Lambchop.app is plug and play. You give it some configuration. It takes care of running your application automatically.
-
-TODO FOR JACK: add a succinct but full description/list of what Lambchop.app does for you.
 
 ```
 import Lambchop from 'lambchop'

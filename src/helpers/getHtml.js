@@ -15,21 +15,23 @@ const getHtml = ({
   req, res, statusCode, title, configData,
 }) => {
   const { appName, render, errorNotifier } = configData;
-  let { assetMetaData = { assetBaseUrl: 'http://localhost:8081' } } = configData;
+  let { assetMetaData = { assetBaseUrl: 'http://localhost:8080' } } = configData;
   assetMetaData = {
     ...assetMetaData,
-    assetBaseUrl: assetMetaData.assetBaseUrl || 'http://localhost:8081',
+    assetBaseUrl: assetMetaData.assetBaseUrl || 'http://localhost:8080',
   };
 
   // Set status code
-  res.status(statusCode);
-  res.statusCode = statusCode;
+  if (statusCode) {
+    res.status(statusCode);
+    res.statusCode = statusCode;
+  }
 
   // Get data to render
   const {
     envForHydration, gaConfig = {}, pageMetaData,
     hashIdEndpoint = '/hshid', clientHydrationEndpoint,
-    appRoot, headerSnippet = [], bodySnippet = [],
+    appRoot, headerSnippetPre = [], headerSnippet = [], bodySnippet = [],
   } = render(req, res);
 
   // Override title
@@ -56,6 +58,7 @@ const getHtml = ({
         assetBaseUrl: process.env.NODE_ENV !== 'development' ? '' : assetMetaData.assetBaseUrl,
       },
       initialGTMDataLayer,
+      headerSnippetPre,
       headerSnippet,
       bodySnippet,
       initialStateData: clientHydrationEndpoint ? null : data,

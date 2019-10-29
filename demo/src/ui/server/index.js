@@ -1,23 +1,17 @@
 import React from 'react';
-import App from '../app';
+import path from 'path';
 import Lambchop from '../../../../index';
-import { RollbarNotifier } from '../../../../error-notification';
-import hotjarTrigger from '../../../../universal-rendering/analytics/hotjar';
-
-// Error Notifier
-const Rollbar = new RollbarNotifier({
-  serverAccessToken: process.env.ROLLBAR_SERVER_TOKEN,
-  clientAccessToken: process.env.ROLLBAR_CLIENT_TOKEN,
-  environment: process.env.ROLLBAR_ENVIRONMENT
-});
+import renderFunction from './helpers/renderFunction';
+import rollbarNotifier from './helpers/getRollbar';
 
 // Data fetcher
 const getData = async (req, res) => {
-  const { pathParameters } = req;
+  const { pathParameters, headers } = req;
+  const { countryCode } = headers;
   const { id } = pathParameters;
   const fetchData = new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve({id, value: 'This is test data ' + id});
+      resolve({id, value: 'This is test data ' + id + ' ' + countryCode});
     }, 300);
   });
   const data = await fetchData;
@@ -46,7 +40,7 @@ const beforeRender = () => {
   };
 };
 
-const app = Lambchop.app({
+const config = {
   appName: 'lambchop',
   cache: {
     cacheStoreName: 'Redis',
@@ -57,48 +51,38 @@ const app = Lambchop.app({
     ttl: 259200,
     connectionTimeout: 100,
   },
-  errorNotifier: Rollbar,
+  errorNotifier: rollbarNotifier,
   dataFetcher: getData,
-  render: (req, res) => {
-    const { statusCode } = res;
-    const { data = {} } = req;
-    const { value } = data;
-
-    return {
-      envForHydration: {
-        WRITE_REVIEW_BASE_URL: process.env.WRITE_REVIEW_BASE_URL,
-        MAIN_SITE_URL: process.env.MAIN_SITE_URL,
-        IMAGE_BASE_URL: process.env.IMAGE_BASE_URL
-      },
-      gaConfig: {
-        gaTrackingId: process.env.GA_TRACKING_ID,
-        gaContainerId: process.env.OPTIMIZE_CONTAINER_ID,
-        gtmContainerId: process.env.GTM_CONTAINER_ID,
-        initialGTMDataLayer: value ? {
-          value: value,
-        } : {},
-      },
-      pageMetaData: {
-        title: `Lambchop - ${new Date().getFullYear()}`,
-        description: `This is demo app for lambchop.`,
-      },
-      hashIdEndpoint: `${process.env.MAIN_SITE_URL}/hshid`,
-      appRoot: (<App pageData={data || {}} statusCode={statusCode} />),
-      headerSnippet: value ? [
-        hotjarTrigger(() => `
-          if (${value}) {
-            hj('trigger', 'upgraded_sp');
+  staticConfig: {
+    childPath: path.resolve(__dirname, './uiServer'),
+    dataGenerator: async () => {
+      const fetchData = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const result = [];
+          for(let count = 0; count < 100; count++) {
+            result.push({id: count, value: 'This is test data ' + count});
           }
-        `),
-      ] : [],
-      bodySnippet: [],
-    };
+          resolve(result);
+        }, 3000);
+      });
+      const data = await fetchData;
+      return data;
+    },
+    folderPath: path.resolve(__dirname, '../static'),
+    logFolderPath: path.resolve(__dirname, '../log'),
   },
-});
+  render: renderFunction,
+};
+
+const app = Lambchop.app(config);
 
 app.injectMiddleware({
   hook: 'beforeRender',
   middleware: beforeRender(),
 });
+
+if (Lambchop.isStatic()) {
+  module.exports = Lambchop.staticGenerator(config);
+}
 
 exports.handler = app.run();

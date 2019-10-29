@@ -13,7 +13,7 @@ describe('retrieveData', () => {
       return data;
     }
     const req = {};
-    const res = {};
+    const res = { header: () => {} };
     const next = jest.fn();
     const middleware = retrieveData(promise);
     await middleware(req, res, next);

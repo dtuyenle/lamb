@@ -46,6 +46,10 @@ const reactServerSideRender = (data) => { /* eslint-disable no-unused-vars */
      */
     initialGTMDataLayer,
     /**
+     * Custom header snippets BEFORE the app js.
+     */
+    headerSnippetPre,
+    /**
      * Custom header snippets.
      */
     headerSnippet,

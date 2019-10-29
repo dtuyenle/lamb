@@ -47,9 +47,15 @@ const renderHeaderThirdPartyScripts = ({
 };
 
 /**
+ * Render custom snippets in the header tag BEFORE the app javascript is loaded.
+ * @param {String|Array} headerSnippetPre - Snippets of html tags
+ */
+const renderHeaderCustomSnippetPre = ({ headerSnippetPre }) => [headerSnippetPre ? outputHtml(headerSnippetPre) : ''];
+
+/**
  * Render custom snippet for header tag.
  * @param {Object} envForHydration - Environment object.
- * @param {String} headerSnippet - Header html snippet.
+ * @param {String|Array} headerSnippet - Header html snippet.
  * @param {Object} initialStateData - Initial state data.
  * @param {String} initialStateEndpoint - Initial state endpoint.
  * @return {Array} Array of header custom html snippet.
@@ -77,6 +83,7 @@ const renderStyles = ({
  */
 const renderHeaderTags = createSnippetFunctionAggregator(
   renderHeaderMetaData,
+  renderHeaderCustomSnippetPre,
   renderAssetsUrl,
   renderHeaderThirdPartyScripts,
   renderHeaderCustomSnippet,

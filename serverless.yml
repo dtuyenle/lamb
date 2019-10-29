@@ -16,7 +16,6 @@ provider:
     GTM_CONTAINER_ID: ${self:custom.analyticsConfig.GTM_CONTAINER_ID}
     OPTIMIZE_CONTAINER_ID: ${self:custom.analyticsConfig.OPTIMIZE_CONTAINER_ID}
     GA_TRACKING_ID: ${self:custom.analyticsConfig.GA_TRACKING_ID}
-    HMAC_KEY: ${self:custom.secrets.HMAC_KEY}
   iamRoleStatements:
     - Effect: "Allow" # xray permissions (required)
       Action:
@@ -57,6 +56,33 @@ functions:
           response:
             headers:
               Content-Type: "'text/html'"
+  api:
+    handler: demo/dist/lambchop/api.handler
+    memorySize: 3008
+    package:
+      # We're including this file so it will be in the final package of this function only
+      include:
+        - demo/dist/lambchop/api.js
+        - demo/dist/lambchop/api.js.map
+    environment:
+      ROLLBAR_CLIENT_TOKEN: ${self:custom.rollbarConfig.ROLLBAR_CLIENT_TOKEN}
+      MAIN_SITE_URL: ${self:custom.urls.MAIN_SITE_URL}
+      IMAGE_BASE_URL: ${self:custom.urls.IMAGE_BASE_URL}
+      WRITE_REVIEW_BASE_URL: ${self:custom.urls.WRITE_REVIEW_BASE_URL}
+      REDIS_URL: ${self:custom.redis.REDIS_URL}
+      REDIS_PORT: ${self:custom.redis.REDIS_PORT}
+      REDIS_PASS: ${self:custom.redis.REDIS_PASS}
+    events:
+    - http:
+          method: get
+          path: api/{id}
+          request:
+            parameters:
+              path:
+                id: true
+          response:
+            headers:
+              Content-Type: "'application/json'"
 plugins:
   - serverless-offline
   - serverless-finch
@@ -76,7 +102,6 @@ custom:
   stage: ${opt:stage, self:custom.defaultStage}
   urls: ${file(demo/config/urls.yml):${self:custom.stage}}
   redis: ${file(demo/config/redis.yml):${self:custom.stage}}
-  secrets: ${file(demo/config/secrets.yml):${self:custom.stage}}
   client:
     bucketName: ${self:custom.s3Config.CLIENT_BUCKET_NAME}
     distributionFolder: ${self:custom.s3Config.CLIENT_DIST_FOLDER}

@@ -24,7 +24,7 @@ const cacheRead = (getKey, client) => async (req, res, next) => {
   }
 
   const end = new Date();
-  res.header('time-taken-cache', end.getTime() - start.getTime());
+  res.header('time-taken-read-cache', end.getTime() - start.getTime());
   next();
 };
 

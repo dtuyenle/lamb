@@ -12,6 +12,7 @@ const SRC = path.resolve(__dirname, 'src');
 const serverConfig = {
   entry: {
     uiServer: `${SRC}/ui/server/index.js`,
+    api: `${SRC}/ui/api/index.js`,
   },
   output: {
     filename: '[name].js',
@@ -56,7 +57,7 @@ const serverConfig = {
             ignore: ['node_modules/is_js'],
           },
         },
-        exclude: /node_modules\/(?!cap-ui)/,
+        exclude: /node_modules\/(?!cap-ui|worker-farm)/,
       },
       {
         test: /\.(png|jp(e*)g|svg|gif|ico)/,
